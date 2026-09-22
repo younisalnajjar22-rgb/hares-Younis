@@ -13,7 +13,7 @@ class YounisVpnService : VpnService() {
 
     override fun onStartCommand(intent: android.content.Intent?, flags: Int, startId: Int): Int {
         registerNetworkCallback()
-        rebuildForCurrentNetwork()
+        rebuildForCurrentNetwork(force = true)
         return START_STICKY
     }
 
@@ -23,16 +23,16 @@ class YounisVpnService : VpnService() {
 
         callback = object : ConnectivityManager.NetworkCallback() {
             override fun onAvailable(network: Network) {
-                rebuildForCurrentNetwork()
+                rebuildForCurrentNetwork(force = true)
             }
             override fun onLost(network: Network) {
-                rebuildForCurrentNetwork()
+                rebuildForCurrentNetwork(force = true)
             }
             override fun onCapabilitiesChanged(
                 network: Network,
                 networkCapabilities: NetworkCapabilities
             ) {
-                rebuildForCurrentNetwork()
+                rebuildForCurrentNetwork(force = true)
             }
         }
 
@@ -40,9 +40,9 @@ class YounisVpnService : VpnService() {
     }
 
     @Synchronized
-    private fun rebuildForCurrentNetwork() {
+    private fun rebuildForCurrentNetwork(force = true) {
         val mode = NetworkModeDetector.current(this)
-        if (mode == lastMode && vpn != null) return
+        if (!force && mode == lastMode && vpn != null) return
         lastMode = mode
 
         stopVpnOnly()

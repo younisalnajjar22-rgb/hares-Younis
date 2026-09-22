@@ -14,6 +14,8 @@ import android.widget.*
 import java.util.Locale
 
 class MainActivity : Activity() {
+
+    private fun dp(v: Int): Int = (v * resources.displayMetrics.density + 0.5f).toInt()
     private lateinit var prefs: SharedPreferences
     private lateinit var list: LinearLayout
     private lateinit var search: EditText
@@ -40,7 +42,7 @@ class MainActivity : Activity() {
 
         val header = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
-            setPadding(28, 30, 28, 22)
+            setPadding(dp(20), dp(22), dp(20), dp(18))
             setBackgroundColor(blue)
         }
 
@@ -68,7 +70,7 @@ class MainActivity : Activity() {
         val protectionCard = LinearLayout(this).apply {
             orientation = LinearLayout.HORIZONTAL
             gravity = Gravity.CENTER_VERTICAL
-            setPadding(22, 18, 22, 18)
+            setPadding(dp(16), dp(14), dp(16), dp(14))
             setBackgroundColor(card)
         }
 
@@ -108,7 +110,7 @@ class MainActivity : Activity() {
             textSize = 21f
             typeface = Typeface.DEFAULT_BOLD
             setTextColor(Color.DKGRAY)
-            setPadding(24, 18, 24, 8)
+            setPadding(dp(18), dp(14), dp(18), dp(8))
             gravity = Gravity.RIGHT
         }
         root.addView(section)
@@ -116,10 +118,10 @@ class MainActivity : Activity() {
         search = EditText(this).apply {
         this.hint = "🔎  ابحث عن تطبيق"
         setSingleLine(true)
-            setPadding(20, 8, 20, 8)
+            setPadding(dp(14), dp(6), dp(14), dp(6))
             setBackgroundColor(Color.WHITE)
         }
-        val searchParams = LinearLayout.LayoutParams(-1, 52)
+        val searchParams = LinearLayout.LayoutParams(-1, dp(52))
         searchParams.setMargins(18, 0, 18, 8)
         root.addView(search, searchParams)
 
