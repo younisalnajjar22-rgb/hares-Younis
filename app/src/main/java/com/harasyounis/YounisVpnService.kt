@@ -23,16 +23,16 @@ class YounisVpnService : VpnService() {
 
         callback = object : ConnectivityManager.NetworkCallback() {
             override fun onAvailable(network: Network) {
-                rebuildForCurrentNetwork(force = true)
+                rebuildForCurrentNetwork()
             }
             override fun onLost(network: Network) {
-                rebuildForCurrentNetwork(force = true)
+                rebuildForCurrentNetwork()
             }
             override fun onCapabilitiesChanged(
                 network: Network,
                 networkCapabilities: NetworkCapabilities
             ) {
-                rebuildForCurrentNetwork(force = true)
+                rebuildForCurrentNetwork()
             }
         }
 
@@ -40,7 +40,7 @@ class YounisVpnService : VpnService() {
     }
 
     @Synchronized
-    private fun rebuildForCurrentNetwork(force = true) {
+    private fun rebuildForCurrentNetwork(force: Boolean = false) {
         val mode = NetworkModeDetector.current(this)
         if (!force && mode == lastMode && vpn != null) return
         lastMode = mode
