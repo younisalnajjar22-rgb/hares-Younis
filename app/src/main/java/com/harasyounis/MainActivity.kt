@@ -114,8 +114,8 @@ class MainActivity : Activity() {
         root.addView(section)
 
         search = EditText(this).apply {
-            hint = "🔎  ابحث عن تطبيق"
-            singleLine = true
+        this.hint = "🔎  ابحث عن تطبيق"
+        setSingleLine(true)
             setPadding(20, 8, 20, 8)
             setBackgroundColor(Color.WHITE)
         }
