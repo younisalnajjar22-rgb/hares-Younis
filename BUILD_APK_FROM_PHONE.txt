@@ -1,0 +1,13 @@
+حارس يونس — بناء APK من الهاتف
+
+بعد فتح المشروع في AndroidIDE:
+
+1) افتح Terminal.
+2) نفذ:
+   cd /path/to/Haras_Younis_v11_phone
+3) نفذ:
+   gradle assembleDebug
+4) الملف الناتج:
+   app/build/outputs/apk/debug/app-debug.apk
+
+إذا ظهر خطأ متعلق بـ SDK، افتح SDK Manager داخل بيئة التطوير وثبّت Android SDK Platform 35 وBuild Tools المناسبة، ثم أعد الأمر.
